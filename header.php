@@ -82,7 +82,6 @@
 										);
 
 
-
 									?>
 										<!-- <ul class="nav navbar-nav">
 											<li class="active"><a href="index.html">Home</a></li>
