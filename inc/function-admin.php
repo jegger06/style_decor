@@ -164,11 +164,6 @@ function styledecor_sanitize_twitter( $input ) {
 
 }
 
-
-
-
-
-
 function styledecor_theme_create_page() {
 
 	require_once get_template_directory() . '/inc/templates/styledecor-admin.php';
