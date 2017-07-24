@@ -1,1 +1,25 @@
-Make the news & event custom post type
+* Custom Post Types
+	- News & Events - done
+		- Title (Supports)
+		- Date meta box
+		- Editor (Supports)
+	- Designs Types - done
+		- Taxonomy
+		- Short Description meta box
+		- Editor - meta box
+		- Featured Image (Supports)
+	- Team - styling
+		- Role meta box
+		- Facebook meta box
+		- Twitter meta box
+		- RSS meta box
+
+* Plugins
+	- Image Gallery with captions (Gallery Page)
+	- Contact Us Form (Mail Us Page)
+		- Full Name field
+		- Phone field
+		- Email field
+		- Subject field
+		- Message field
+	- Google Map (Mail Us Page)

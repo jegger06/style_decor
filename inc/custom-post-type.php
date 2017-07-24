@@ -9,48 +9,183 @@
 ===============================
 
 */
+
+// News & Events CPT
 function styledecor_cpt_news_events() {
 
 	$singular = 'News & Event';
 	$plural = 'News & Events';
 
 	$labels = array(
-		'name' 					=> $singular,
-		'singular_name' 		=> $singular,
-		'add_new' 				=> 'Add ' . $singular,
-		'all_items' 			=> 'All ' . $plural,
-		'add_new_item' 			=> 'Add ' . $singular,
-		'edit_item' 			=> 'Edit ' . $singular,
-		'new_item' 				=> 'New ' . $singular,
-		'view_item' 			=> 'View ' . $singular,
-		'search_item' 			=> 'Search ' . $plural,
-		'not_found' 			=> 'No ' . $plural . ' found',
-		'not_found_in_trash' 	=> 'No ' . $plural . ' found in trash'
+		'name'					=> $plural,
+		'singular_name'			=> $singular,
+		'add_name'				=> 'Add New',
+		'add_new_item'			=> 'Add New ' . $singular,
+		'all_items'				=> 'All ' . $plural,
+		'edit'					=> 'Edit',
+		'edit_item'				=> 'Edit ' . $singular,
+		'new_item'				=> 'New ' . $singular,
+		'view'					=> 'View ' . $singular,
+		'view_item'				=> 'View ' . $singular,
+		'search_item'			=> 'Search ' . $plural,
+		'parent'				=> 'Parent ' . $singular,
+		'not_found'				=> 'No ' . $plural . ' found',
+		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
 	);
 
 	$args = array(
-		'labels' 				=> $labels,
-		'public' 				=> true,
-		'has_archive' 			=> true,
-		'publicly_queryable' 	=> true,
-		'query_var' 			=> true,
-		'rewrite' 				=> true,
-		'capability_type' 		=> 'post',
-		'hierarchical' 			=> false,
-		'supports' 				=> array(
-									'title',
-									'editor',
-									'excerpt',
-									'thumbnail',
-									'revisions'
-								),
-		'menu_position' 		=> 5,
-		'menu_icon' 			=> 'dashicons-format-aside',
-		'exclude_from_search' 	=> false
+		'labels'				=> $labels,
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'exclude_from_search'	=> false,
+		'show_in_nav_menus'		=> false,
+		'show_ui'				=> true,
+		'show_in_menu'			=> true,
+		'show_in_admin_bar'		=> true,
+		'menu_position'			=> 6,
+		'menu_icon'				=> 'dashicons-format-aside',
+		'can_export'			=> true,
+		'delete_with_user'		=> false,
+		'hierarchical'			=> false,
+		'has_archive'			=> true,
+		'query_var'				=> true,
+		'capability_type'		=> 'post',
+		'map_meta_cap'			=> true,
+		// 'capabilities'		=> array(),
+		'rewrite'				=> array(
+			'slug'			=> 'news-events',
+			'with_front'	=> true,
+			'pages'			=> true,
+			'feeds'			=> false,
+		),
+		'supports'				=> array(
+			'title',
+			'editor'
+		)
 	);
 
-	register_post_type( 'news-events', $args );
+	register_post_type( 'sd-news-events', $args );
 
 }
 
 add_action( 'init', 'styledecor_cpt_news_events' );
+
+// Design CPT
+function styledecor_cpt_design_types() {
+
+	$singular = 'Design';
+	$plural = 'Designs';
+
+	$labels = array(
+		'name'					=> $plural,
+		'singular_name'			=> $singular,
+		'add_name'				=> 'Add New',
+		'add_new_item'			=> 'Add New ' . $singular,
+		'all_items'				=> 'All ' . $plural,
+		'edit'					=> 'Edit',
+		'edit_item'				=> 'Edit ' . $singular,
+		'new_item'				=> 'New ' . $singular,
+		'view'					=> 'View ' . $singular,
+		'view_item'				=> 'View ' . $singular,
+		'search_item'			=> 'Search ' . $plural,
+		'parent'				=> 'Parent ' . $singular,
+		'not_found'				=> 'No ' . $plural . ' found',
+		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
+	);
+
+	$args = array(
+		'labels'				=> $labels,
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'exclude_from_search'	=> false,
+		'show_in_nav_menus'		=> false,
+		'show_ui'				=> true,
+		'show_in_menu'			=> true,
+		'show_in_admin_bar'		=> true,
+		'menu_position'			=> 7,
+		'menu_icon'				=> 'dashicons-palmtree',
+		'can_export'			=> true,
+		'delete_with_user'		=> false,
+		'hierarchical'			=> false,
+		'has_archive'			=> true,
+		'query_var'				=> true,
+		'capability_type'		=> 'post',
+		'map_meta_cap'			=> true,
+		// 'capabilities'		=> array(),
+		'rewrite'				=> array(
+			'slug'			=> 'design',
+			'with_front'	=> true,
+			'pages'			=> true,
+			'feeds'			=> false,
+		),
+		'supports'				=> array(
+			'title',
+			'thumbnail'
+		)
+	);
+
+	register_post_type( 'sd-design', $args );
+
+}
+
+add_action( 'init', 'styledecor_cpt_design_types' );
+
+// Team CPT
+function styledecor_cpt_team() {
+
+	$singular = 'Team';
+	$plural = 'Teams';
+
+	$labels = array(
+		'name'					=> $plural,
+		'singular_name'			=> $singular,
+		'add_name'				=> 'Add New',
+		'add_new_item'			=> 'Add New ' . $singular,
+		'all_items'				=> 'All ' . $plural,
+		'edit'					=> 'Edit',
+		'edit_item'				=> 'Edit ' . $singular,
+		'new_item'				=> 'New ' . $singular,
+		'view'					=> 'View ' . $singular,
+		'view_item'				=> 'View ' . $singular,
+		'search_item'			=> 'Search ' . $plural,
+		'parent'				=> 'Parent ' . $singular,
+		'not_found'				=> 'No ' . $plural . ' found',
+		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
+	);
+
+	$args = array(
+		'labels'				=> $labels,
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'exclude_from_search'	=> false,
+		'show_in_nav_menus'		=> false,
+		'show_ui'				=> true,
+		'show_in_menu'			=> true,
+		'show_in_admin_bar'		=> true,
+		'menu_position'			=> 8,
+		'menu_icon'				=> 'dashicons-groups',
+		'can_export'			=> true,
+		'delete_with_user'		=> false,
+		'hierarchical'			=> false,
+		'has_archive'			=> true,
+		'query_var'				=> true,
+		'capability_type'		=> 'post',
+		'map_meta_cap'			=> true,
+		// 'capabilities'		=> array(),
+		'rewrite'				=> array(
+			'slug'			=> 'team',
+			'with_front'	=> true,
+			'pages'			=> true,
+			'feeds'			=> false,
+		),
+		'supports'				=> array(
+			'title',
+			'thumbnail'
+		)
+	);
+
+	register_post_type( 'sd-team', $args );
+
+}
+
+add_action( 'init', 'styledecor_cpt_team' );

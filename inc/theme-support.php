@@ -17,3 +17,7 @@ function styledecor_register_nav() {
 
 }
 add_action( 'after_setup_theme', 'styledecor_register_nav' );
+
+
+// Activate the feautured image meta box
+add_theme_support( 'post-thumbnails' ); 

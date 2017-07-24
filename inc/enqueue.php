@@ -5,11 +5,29 @@
 @package styledecortheme
 
 ====================================
-	FRONT END ENQUEUE FUNCTIONS
+	THEME ENQUEUE FUNCTIONS
 ====================================
 
 */
 
+// LOAD ADMIN SCRIPTS
+function styledecor_load_admin_scripts() {
+
+	global $pagenow, $typenow;
+
+	if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && ( $typenow == 'sd-news-events' || $typenow == 'sd-design' || $typenow == 'sd-team' ) ) {
+
+		wp_enqueue_style( 'admin-news-event', get_template_directory_uri() . '/css/admin_news_event.css', array(), '0.0.1', 'all' );
+		wp_enqueue_style( 'jquery-datepicker', 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
+		wp_enqueue_script( 'admin-news-event-script', get_template_directory_uri() . '/js/admin_news_event.js', array( 'jquery', 'jquery-ui-datepicker' ), '0.0.1', true );
+
+	}
+
+}
+
+add_action( 'admin_enqueue_scripts', 'styledecor_load_admin_scripts' );
+
+// LOAD FRONT END SCRIPTS
 function styledecor_load_scripts() {
 
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.4', 'all' );
