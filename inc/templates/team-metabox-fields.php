@@ -12,7 +12,7 @@
 
 ?>
 
-<div>
+<div id="team-cpt">
 	<div class="meta-row">
 		<div class="meta-th">
 			<label for="team-role"><?php _e( 'Role' ); ?></label>

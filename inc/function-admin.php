@@ -16,7 +16,7 @@ function styledecor_add_admin_page() {
 
 	// Adding the sub pages on the 'Style Decor' Menu
 	add_submenu_page( 'style_decor', 'Style Decor General Settings', 'General', 'manage_options', 'style_decor', 'styledecor_theme_create_page' );
-	add_submenu_page( 'style_decor', 'Style Decor Theme Options', 'Theme Options', 'manage_options', 'style_decor_theme_options', 'styledecor_theme_options' );
+	add_submenu_page( 'style_decor', 'Style Decor Contact Form', 'Contact Form', 'manage_options', 'style_decor_theme_contact', 'styledecor_contact_form_page' );
 
 	// Activate custom settings
 	add_action( 'admin_init', 'styledecor_custom_settings' );
@@ -48,6 +48,11 @@ function styledecor_custom_settings() {
 	add_settings_field( 'social-googleplus', 'Google+ Handler', 'styledecor_social_googleplus', 'style_decor', 'styledecor-social-links', array( 'label_for' => 'googleplus' ) );
 	add_settings_field( 'social-penterest', 'Penterest Handler', 'styledecor_social_penterest', 'style_decor', 'styledecor-social-links', array( 'label_for' => 'penterest' ) );
 
+	// Contact Form Options for contact page
+	register_setting( 'styledecor-contact-options', 'activate_contact_form' );
+	add_settings_section( 'styledecor-contact-section', 'Contact Form', 'styledecor_contact_section', 'style_decor_theme_contact' );
+	add_settings_field( 'activate-contact-form', 'Activate Contact Form', 'styledecor_activate_contact_form', 'style_decor_theme_contact', 'styledecor-contact-section' );
+
 }
 
 function styledecor_contact_info() {
@@ -59,6 +64,23 @@ function styledecor_contact_info() {
 function styledecor_social_links() {
 
 	echo '';
+
+}
+
+// Contact add_settings_section callback function
+function styledecor_contact_section() {
+
+	echo 'Activate and Deactivate the Built-in Contact Form';
+
+}
+
+// Contact add_settings_field callback function
+function styledecor_activate_contact_form() {
+
+	$options = get_option( 'activate_contact_form' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+
+	echo '<input type="checkbox" id="activate_contact_form" name="activate_contact_form" value="1" ' . $checked .  '/>';
 
 }
 
@@ -126,7 +148,6 @@ function styledecor_social_penterest() {
 
 }
 
-
 // Sanitization/Validation
 function styledecor_sanitize_email( $input ) {
 
@@ -164,14 +185,15 @@ function styledecor_sanitize_twitter( $input ) {
 
 }
 
+// Template submenu callback functions
 function styledecor_theme_create_page() {
 
 	require_once get_template_directory() . '/inc/templates/styledecor-admin.php';
 
 }
 
-function styledecor_theme_options() {
+function styledecor_contact_form_page() {
 
-	require_once get_template_directory() . '/inc/templates/styledecor-admin-options.php';
+	require_once get_template_directory() . '/inc/templates/styledecor-contact-form.php';
 
 }

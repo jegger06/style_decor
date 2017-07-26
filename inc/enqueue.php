@@ -15,7 +15,7 @@ function styledecor_load_admin_scripts() {
 
 	global $pagenow, $typenow;
 
-	if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && ( $typenow == 'sd-news-events' || $typenow == 'sd-design' || $typenow == 'sd-team' ) ) {
+	if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) && ( $typenow == 'sd-news-events' || $typenow == 'sd-design' || $typenow == 'sd-team' || $typenow == 'sd-mail' ) ) {
 
 		wp_enqueue_style( 'admin-news-event', get_template_directory_uri() . '/css/admin_news_event.css', array(), '0.0.1', 'all' );
 		wp_enqueue_style( 'jquery-datepicker', 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );

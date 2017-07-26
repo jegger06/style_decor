@@ -159,3 +159,65 @@ function styledecor_team_meta_save( $post_id ) {
 }
 
 add_action( 'save_post_sd-team', 'styledecor_team_meta_save' );
+
+// Adding a meta box into the Mail CPT
+function styledecor_mail_add_custom_box() {
+
+	add_meta_box(
+		'styledecor_mail_meta', 
+		'Mail Custom Fields', 
+		'styledecor_mail_meta_callback', 
+		'sd-mail',
+		'normal',
+		'high'
+	);
+
+}
+
+// Callback function for the add_meta_box of the styledecor_mail_add_custom_box function
+function styledecor_mail_meta_callback( $post ) {
+
+	wp_nonce_field( basename( __FILE__ ), 'styledecor_mail_nonce' );
+	$mail_stored_meta = get_post_meta( $post->ID );
+
+	require_once( get_template_directory() . '/inc/templates/mail-metabox-fields.php' );
+
+}
+
+// Save post for the Mail CPT fields
+function styledecor_mail_meta_save( $post_id ) {
+
+	$is_autosave = wp_is_post_autosave( $post_id );
+	$is_revision = wp_is_post_revision( $post_id );
+	$is_valid_nonce = ( isset( $_POST['styledecor_mail_nonce'] ) && wp_verify_nonce( $_POST['styledecor_mail_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
+
+	// Exists script depending on save status
+	if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+		return;
+	}
+
+	if ( isset( $_POST['mail_phone'] ) ) {
+
+		update_post_meta( $post_id, 'mail_phone', sanitize_text_field( $_POST['mail_phone'] ) );
+
+	}
+
+	if ( isset( $_POST['mail_email'] ) ) {
+
+		update_post_meta( $post_id, 'mail_email', sanitize_text_field( $_POST['mail_email'] ) );
+
+	}
+
+	if ( isset( $_POST['mail_subject'] ) ) {
+
+		update_post_meta( $post_id, 'mail_subject', sanitize_text_field( $_POST['mail_subject'] ) );
+
+	}
+
+	if ( isset( $_POST['mail_content'] ) ) {
+
+		update_post_meta( $post_id, 'mail_content', $_POST['mail_content'] );
+
+	}
+
+}

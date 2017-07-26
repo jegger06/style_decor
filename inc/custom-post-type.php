@@ -118,7 +118,7 @@ function styledecor_cpt_design_types() {
 			'pages'			=> true,
 			'feeds'			=> false,
 		),
-		'supports'				=> array(
+		'supports'			=> array(
 			'title',
 			'thumbnail'
 		)
@@ -189,3 +189,87 @@ function styledecor_cpt_team() {
 }
 
 add_action( 'init', 'styledecor_cpt_team' );
+
+// Add the Mail Us CPT if the contact form is activated.
+$mail = get_option( 'activate_contact_form' );
+
+if ( @$mail == 1 ) {
+
+	add_action( 'init', 'styledecor_cpt_mail' );
+
+	add_filter( 'manage_sd-mail_posts_columns', 'styledecor_set_mail_columns' );
+	add_action( 'manage_sd-mail_posts_custom_column', 'styledecor_mail_custom_column', 10, 2 );
+	add_action( 'add_meta_boxes', 'styledecor_mail_add_custom_box' );
+	add_action( 'save_post_sd-mail', 'styledecor_mail_meta_save' );
+
+}
+
+// Mail CPT
+function styledecor_cpt_mail() {
+
+	$singular = 'Mail';
+	$plural = 'Mails';
+
+	$labels = array(
+		'name' 				=> $plural,
+		'singular_name' 	=> $singular,
+		'menu_name' 		=> $plural,
+		'name_admin_bar' 	=> $singular
+	);
+
+	$args = array(
+		'labels' 			=> $labels,
+		'show_ui' 			=> true,
+		'show_in_menu' 		=> true,
+		'capability_type' 	=> 'post',
+		'hirarchical' 		=> false,
+		'menu_position' 	=> 26,
+		'menu_icon' 		=> 'dashicons-email-alt',
+		'supports' 			=> array(
+			'title',
+			'author'
+		),
+	);
+
+	register_post_type( 'sd-mail', $args );
+
+}
+
+function styledecor_set_mail_columns( $columns ) {
+
+	// Adding/Customizing the columns for the viewing of mails
+	$new_columns = array();
+	$new_columns['title'] = 'Full Name';
+	$new_columns['phone'] = 'Phone';
+	$new_columns['email'] = 'Email';
+	$new_columns['subject'] = 'Subject';
+	$new_columns['message'] = 'Message';
+	$new_columns['date'] = 'Date';
+
+	return $new_columns;
+
+}
+
+function styledecor_mail_custom_column( $column, $post_id ) {
+
+	switch ( $column ) {
+
+		case 'phone':
+			echo 'phone';
+			break;
+
+		case 'email':
+			echo 'email address';
+			break;
+
+		case 'subject':
+			echo 'subject';
+			break;
+
+		case 'message':
+			echo 'message';
+			break;
+
+	}
+
+}

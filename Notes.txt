@@ -23,3 +23,8 @@
 		- Subject field
 		- Message field
 	- Google Map (Mail Us Page)
+
+
+Services
+Register
+Choose Us
