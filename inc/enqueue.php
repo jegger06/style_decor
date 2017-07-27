@@ -11,7 +11,7 @@
 */
 
 // LOAD ADMIN SCRIPTS
-function styledecor_load_admin_scripts() {
+function styledecor_load_admin_scripts( $hook ) {
 
 	global $pagenow, $typenow;
 
@@ -20,6 +20,14 @@ function styledecor_load_admin_scripts() {
 		wp_enqueue_style( 'admin-news-event', get_template_directory_uri() . '/css/admin_news_event.css', array(), '0.0.1', 'all' );
 		wp_enqueue_style( 'jquery-datepicker', 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
 		wp_enqueue_script( 'admin-news-event-script', get_template_directory_uri() . '/js/admin_news_event.js', array( 'jquery', 'jquery-ui-datepicker' ), '0.0.1', true );
+
+	}
+
+	if ( $hook === 'style-decor_page_style_decor_theme_custom_css' ) {
+
+		wp_enqueue_style( 'custom-css', get_template_directory_uri() . '/css/admin/custom-css.css', array(), '0.0.1', 'all' );
+		wp_enqueue_script( 'ace', get_template_directory_uri() . '/libs/ace/ace.js', array( 'jquery' ), '1.2.8', true );
+		wp_enqueue_script( 'custom-css-script', get_template_directory_uri() . '/js/admin/custom-css.js', array( 'jquery' ), '0.0.1', true );
 
 	}
 

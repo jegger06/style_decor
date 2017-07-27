@@ -211,65 +211,48 @@ function styledecor_cpt_mail() {
 	$plural = 'Mails';
 
 	$labels = array(
-		'name' 				=> $plural,
-		'singular_name' 	=> $singular,
-		'menu_name' 		=> $plural,
-		'name_admin_bar' 	=> $singular
+		'name'					=> $plural,
+		'singular_name'			=> $singular,
+		'add_name'				=> 'Add New',
+		'add_new_item'			=> 'Add New ' . $singular,
+		'all_items'				=> 'All ' . $plural,
+		'edit'					=> 'Edit',
+		'edit_item'				=> 'Edit ' . $singular,
+		'new_item'				=> 'New ' . $singular,
+		'view'					=> 'View ' . $singular,
+		'view_item'				=> 'View ' . $singular,
+		'search_item'			=> 'Search ' . $plural,
+		'parent'				=> 'Parent ' . $singular,
+		'not_found'				=> 'No ' . $plural . ' found',
+		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
 	);
 
 	$args = array(
-		'labels' 			=> $labels,
-		'show_ui' 			=> true,
-		'show_in_menu' 		=> true,
-		'capability_type' 	=> 'post',
-		'hirarchical' 		=> false,
-		'menu_position' 	=> 26,
-		'menu_icon' 		=> 'dashicons-email-alt',
-		'supports' 			=> array(
+		'labels'				=> $labels,
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'exclude_from_search'	=> false,
+		'show_in_nav_menus'		=> false,
+		'show_ui'				=> true,
+		'show_in_menu'			=> true,
+		'show_in_admin_bar'		=> true,
+		'menu_position' 		=> 26,
+		'menu_icon' 			=> 'dashicons-email-alt',
+		'can_export'			=> true,
+		'delete_with_user'		=> false,
+		'hierarchical'			=> false,
+		'has_archive'			=> true,
+		'query_var'				=> true,
+		'capability_type'		=> 'post',
+		'map_meta_cap'			=> true,
+		// 'capabilities'		=> array(),
+		'rewrite'				=> array(),
+		'supports'				=> array(
 			'title',
 			'author'
-		),
+		)
 	);
 
 	register_post_type( 'sd-mail', $args );
-
-}
-
-function styledecor_set_mail_columns( $columns ) {
-
-	// Adding/Customizing the columns for the viewing of mails
-	$new_columns = array();
-	$new_columns['title'] = 'Full Name';
-	$new_columns['phone'] = 'Phone';
-	$new_columns['email'] = 'Email';
-	$new_columns['subject'] = 'Subject';
-	$new_columns['message'] = 'Message';
-	$new_columns['date'] = 'Date';
-
-	return $new_columns;
-
-}
-
-function styledecor_mail_custom_column( $column, $post_id ) {
-
-	switch ( $column ) {
-
-		case 'phone':
-			echo 'phone';
-			break;
-
-		case 'email':
-			echo 'email address';
-			break;
-
-		case 'subject':
-			echo 'subject';
-			break;
-
-		case 'message':
-			echo 'message';
-			break;
-
-	}
 
 }

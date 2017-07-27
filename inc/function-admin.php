@@ -16,6 +16,7 @@ function styledecor_add_admin_page() {
 
 	// Adding the sub pages on the 'Style Decor' Menu
 	add_submenu_page( 'style_decor', 'Style Decor General Settings', 'General', 'manage_options', 'style_decor', 'styledecor_theme_create_page' );
+	add_submenu_page( 'style_decor', 'Style Decor Custom CSS', 'Custom CSS', 'manage_options', 'style_decor_theme_custom_css', 'styledecor_custom_css_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Contact Form', 'Contact Form', 'manage_options', 'style_decor_theme_contact', 'styledecor_contact_form_page' );
 
 	// Activate custom settings
@@ -53,6 +54,11 @@ function styledecor_custom_settings() {
 	add_settings_section( 'styledecor-contact-section', 'Contact Form', 'styledecor_contact_section', 'style_decor_theme_contact' );
 	add_settings_field( 'activate-contact-form', 'Activate Contact Form', 'styledecor_activate_contact_form', 'style_decor_theme_contact', 'styledecor-contact-section' );
 
+	// Custom CSS admin page options
+	register_setting( 'styledecor-custom-css-options', 'custom_css', 'styledecor_sanitize_custom_css' );
+	add_settings_section( 'styledecor-custom-css-section', 'Custom CSS', 'styledecor_custom_css_section', 'style_decor_theme_custom_css' );
+	add_settings_field( 'add-custom-css', 'Insert your Custom CSS', 'styledecor_custom_css_form', 'style_decor_theme_custom_css', 'styledecor-custom-css-section'  );
+
 }
 
 function styledecor_contact_info() {
@@ -81,6 +87,23 @@ function styledecor_activate_contact_form() {
 	$checked = ( @$options == 1 ? 'checked' : '' );
 
 	echo '<input type="checkbox" id="activate_contact_form" name="activate_contact_form" value="1" ' . $checked .  '/>';
+
+}
+
+// Custom CSS add_settings_section callback function
+function styledecor_custom_css_section() {
+
+	echo 'Customize Style Decor Theme with your own CSS';
+
+}
+
+// Custom CSS add_settings_field callback function
+function styledecor_custom_css_form() {
+
+	$css = get_option( 'custom_css' );
+	$css = ( !empty( $css ) ? $css : '/* Style Decor Theme Custom CSS */' );
+
+	echo '<div id="customCSS">' . $css . '</div><textarea id="custom_css" name="custom_css" style="display:none">' . $css . '</textarea>';
 
 }
 
@@ -185,6 +208,13 @@ function styledecor_sanitize_twitter( $input ) {
 
 }
 
+function styledecor_sanitize_custom_css( $input ) {
+
+	$output = esc_textarea( $input );
+	return $output;
+
+}
+
 // Template submenu callback functions
 function styledecor_theme_create_page() {
 
@@ -195,5 +225,11 @@ function styledecor_theme_create_page() {
 function styledecor_contact_form_page() {
 
 	require_once get_template_directory() . '/inc/templates/styledecor-contact-form.php';
+
+}
+
+function styledecor_custom_css_page() {
+
+	require_once get_template_directory() . '/inc/templates/styledecor-custom-css.php';
 
 }
