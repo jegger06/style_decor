@@ -17,24 +17,28 @@
 	width: 100%;
 }
 
-#team-cpt {
+#team-cpt,
+#register-cpt {
 	padding-top: 30px;
 	-webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
 }
 
-#team-cpt .meta-row {
+#team-cpt .meta-row,
+#register-cpt .meta-row {
 	display: block;
 	margin-bottom: 40px;
 }
 
-#team-cpt .meta-th {
+#team-cpt .meta-th,
+#register-cpt .meta-th {
 	font-weight: bold;
 	margin-bottom: 10px;
 }
 
-#team-cpt .meta-td input {
+#team-cpt .meta-td input,
+#register-cpt .meta-td input {
 	width: 90%;
 }
 

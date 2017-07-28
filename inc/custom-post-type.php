@@ -265,8 +265,11 @@ if ( @$register == 1 ) {
 	add_action( 'init', 'styledecor_cpt_register' );
 
 	add_filter( 'manage_sd-register_posts_columns', 'styledecor_set_register_columns' );
-	// add_action( 'manage_sd-register_posts_custom_column', 'styledecor_register_custom_column', 10, 2 );
-	
+	add_action( 'manage_sd-register_posts_custom_column', 'styledecor_register_custom_column', 10, 2 );
+	add_filter( 'manage_edit-sd-register_sortable_columns', 'styledecor_set_register_sortable_column' );
+	add_action( 'add_meta_boxes', 'styledecor_register_add_custom_box' );
+	add_action( 'save_post', 'styledecor_register_meta_save' );
+
 }
 
 // Register CPT

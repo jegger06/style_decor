@@ -67,20 +67,27 @@ function styledecor_set_register_columns( $columns ) {
 
 }
 
+function styledecor_set_register_sortable_column( $columns ) {
+
+	$columns['email'] = 'email';
+	$columns['phone'] = 'Phone';
+
+	return $columns;
+
+}
+
 function styledecor_register_custom_column( $column, $post_id ) {
 
 	switch ( $column ) {
 
-		case 'title':
-			echo 'Full name';
-			break;
-
 		case 'email':
-			echo 'Email';
+			$email = get_post_meta( $post_id, 'register_email', true );
+			echo $email;
 			break;
 
 		case 'phone':
-			echo 'Phone';
+			$phone = get_post_meta( $post_id, 'register_phone', true );
+			echo $phone;
 			break;		
 		
 	}
