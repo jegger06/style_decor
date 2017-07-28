@@ -19,7 +19,7 @@ function styledecor_cpt_news_events() {
 	$labels = array(
 		'name'					=> $plural,
 		'singular_name'			=> $singular,
-		'add_name'				=> 'Add New',
+		'add_new'				=> 'Add New',
 		'add_new_item'			=> 'Add New ' . $singular,
 		'all_items'				=> 'All ' . $plural,
 		'edit'					=> 'Edit',
@@ -79,7 +79,7 @@ function styledecor_cpt_design_types() {
 	$labels = array(
 		'name'					=> $plural,
 		'singular_name'			=> $singular,
-		'add_name'				=> 'Add New',
+		'add_new'				=> 'Add New',
 		'add_new_item'			=> 'Add New ' . $singular,
 		'all_items'				=> 'All ' . $plural,
 		'edit'					=> 'Edit',
@@ -139,7 +139,7 @@ function styledecor_cpt_team() {
 	$labels = array(
 		'name'					=> $plural,
 		'singular_name'			=> $singular,
-		'add_name'				=> 'Add New',
+		'add_new'				=> 'Add New',
 		'add_new_item'			=> 'Add New ' . $singular,
 		'all_items'				=> 'All ' . $plural,
 		'edit'					=> 'Edit',
@@ -213,7 +213,7 @@ function styledecor_cpt_mail() {
 	$labels = array(
 		'name'					=> $plural,
 		'singular_name'			=> $singular,
-		'add_name'				=> 'Add New',
+		'add_new'				=> 'Add New',
 		'add_new_item'			=> 'Add New ' . $singular,
 		'all_items'				=> 'All ' . $plural,
 		'edit'					=> 'Edit',
@@ -254,5 +254,70 @@ function styledecor_cpt_mail() {
 	);
 
 	register_post_type( 'sd-mail', $args );
+
+}
+
+// Add the Register CPT if the registration form is activated
+$register = get_option( 'activate_registration_form' );
+
+if ( @$register == 1 ) {
+
+	add_action( 'init', 'styledecor_cpt_register' );
+
+	add_filter( 'manage_sd-register_posts_columns', 'styledecor_set_register_columns' );
+	// add_action( 'manage_sd-register_posts_custom_column', 'styledecor_register_custom_column', 10, 2 );
+	
+}
+
+// Register CPT
+function styledecor_cpt_register() {
+
+	$singular = 'Register';
+	$plural = 'Registers';
+
+	$labels = array(
+		'name'					=> $plural,
+		'singular_name'			=> $singular,
+		'add_new'				=> 'Add New',
+		'add_new_item'			=> 'Add New ' . $singular,
+		'all_items'				=> 'All ' . $plural,
+		'edit'					=> 'Edit',
+		'edit_item'				=> 'Edit ' . $singular,
+		'new_item'				=> 'New ' . $singular,
+		'view'					=> 'View ' . $singular,
+		'view_item'				=> 'View ' . $singular,
+		'search_item'			=> 'Search ' . $plural,
+		'parent'				=> 'Parent ' . $singular,
+		'not_found'				=> 'No ' . $plural . ' found',
+		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
+	);
+
+	$args = array(
+		'labels'				=> $labels,
+		'public'				=> true,
+		'publicly_queryable'	=> true,
+		'exclude_from_search'	=> false,
+		'show_in_nav_menus'		=> false,
+		'show_ui'				=> true,
+		'show_in_menu'			=> true,
+		'show_in_admin_bar'		=> true,
+		'menu_position' 		=> 26,
+		'menu_icon' 			=> 'dashicons-businessman',
+		'can_export'			=> true,
+		'delete_with_user'		=> false,
+		'hierarchical'			=> false,
+		'has_archive'			=> true,
+		'query_var'				=> true,
+		'capability_type'		=> 'post',
+		'map_meta_cap'			=> true,
+		// 'capabilities'		=> array(),
+		'rewrite'				=> array(),
+		'supports'				=> array(
+			'title',
+			'author'
+		)
+	);
+
+	register_post_type( 'sd-register', $args );
 
 }

@@ -18,6 +18,7 @@ function styledecor_add_admin_page() {
 	add_submenu_page( 'style_decor', 'Style Decor General Settings', 'General', 'manage_options', 'style_decor', 'styledecor_theme_create_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Custom CSS', 'Custom CSS', 'manage_options', 'style_decor_theme_custom_css', 'styledecor_custom_css_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Contact Form', 'Contact Form', 'manage_options', 'style_decor_theme_contact', 'styledecor_contact_form_page' );
+	add_submenu_page( 'style_decor', 'Style Decor Registration Form', 'Registration Form', 'manage_options', 'style_decor_theme_register', 'styledecor_registration_form_page' );
 
 	// Activate custom settings
 	add_action( 'admin_init', 'styledecor_custom_settings' );
@@ -59,6 +60,11 @@ function styledecor_custom_settings() {
 	add_settings_section( 'styledecor-custom-css-section', 'Custom CSS', 'styledecor_custom_css_section', 'style_decor_theme_custom_css' );
 	add_settings_field( 'add-custom-css', 'Insert your Custom CSS', 'styledecor_custom_css_form', 'style_decor_theme_custom_css', 'styledecor-custom-css-section'  );
 
+	// Registration Form Options for home page (register form)
+	register_setting( 'styledecor-register-options', 'activate_registration_form' );
+	add_settings_section( 'styledecor-register-section', 'Registration Form', 'styledecor_register_section', 'style_decor_theme_register' );
+	add_settings_field( 'activate-registration-form', 'Activate Registration Form', 'styledecor_activate_registration_form', 'style_decor_theme_register', 'styledecor-register-section' );
+
 }
 
 function styledecor_contact_info() {
@@ -87,6 +93,23 @@ function styledecor_activate_contact_form() {
 	$checked = ( @$options == 1 ? 'checked' : '' );
 
 	echo '<input type="checkbox" id="activate_contact_form" name="activate_contact_form" value="1" ' . $checked .  '/>';
+
+}
+
+// Registration add_settings_section callback function
+function styledecor_register_section() {
+
+	echo 'Activate and Deactivate the Registration Form';
+
+}
+
+// Registration add_settings_field callback function
+function styledecor_activate_registration_form() {
+
+	$options = get_option( 'activate_registration_form' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+
+	echo '<input type="checkbox" id="activate_registration_form" name="activate_registration_form" value="1" ' . $checked .  '/>';
 
 }
 
@@ -231,5 +254,11 @@ function styledecor_contact_form_page() {
 function styledecor_custom_css_page() {
 
 	require_once get_template_directory() . '/inc/templates/styledecor-custom-css.php';
+
+}
+
+function styledecor_registration_form_page() {
+
+	require_once get_template_directory() . '/inc/templates/styledecor-registration-form.php';	
 
 }
