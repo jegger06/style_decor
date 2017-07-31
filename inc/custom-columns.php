@@ -15,6 +15,7 @@ function styledecor_set_mail_columns( $columns ) {
 
 	// Adding/Customizing the columns for the viewing of mails
 	$new_columns = array();
+	$new_columns['cb'] = '<input type="checkbox"/>';
 	$new_columns['title'] = 'Full Name';
 	$new_columns['phone'] = 'Phone';
 	$new_columns['email'] = 'Email';

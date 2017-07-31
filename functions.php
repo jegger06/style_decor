@@ -8,4 +8,5 @@ require get_template_directory() . '/inc/custom-post-type.php';
 require get_template_directory() . '/inc/taxonomies.php';
 require get_template_directory() . '/inc/custom-meta-box.php';
 require get_template_directory() . '/inc/custom-columns.php';
+// require get_template_directory() . '/inc/remove-subpages.php';
 require get_template_directory() . '/inc/helpers.php';

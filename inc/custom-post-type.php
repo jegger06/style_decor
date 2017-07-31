@@ -190,20 +190,6 @@ function styledecor_cpt_team() {
 
 add_action( 'init', 'styledecor_cpt_team' );
 
-// Add the Mail Us CPT if the contact form is activated.
-$mail = get_option( 'activate_contact_form' );
-
-if ( @$mail == 1 ) {
-
-	add_action( 'init', 'styledecor_cpt_mail' );
-
-	add_filter( 'manage_sd-mail_posts_columns', 'styledecor_set_mail_columns' );
-	add_action( 'manage_sd-mail_posts_custom_column', 'styledecor_mail_custom_column', 10, 2 );
-	add_action( 'add_meta_boxes', 'styledecor_mail_add_custom_box' );
-	add_action( 'save_post_sd-mail', 'styledecor_mail_meta_save' );
-
-}
-
 // Mail CPT
 function styledecor_cpt_mail() {
 
@@ -245,7 +231,9 @@ function styledecor_cpt_mail() {
 		'query_var'				=> true,
 		'capability_type'		=> 'post',
 		'map_meta_cap'			=> true,
-		// 'capabilities'		=> array(),
+		'capabilities'			=> array(
+			'create_posts' 	=> 'do_not_allow'
+		),
 		'rewrite'				=> array(),
 		'supports'				=> array(
 			'title',
@@ -257,18 +245,17 @@ function styledecor_cpt_mail() {
 
 }
 
-// Add the Register CPT if the registration form is activated
-$register = get_option( 'activate_registration_form' );
+// Add the Mail Us CPT if the contact form is activated.
+$mail = get_option( 'activate_contact_form' );
 
-if ( @$register == 1 ) {
+if ( @$mail == 1 ) {
 
-	add_action( 'init', 'styledecor_cpt_register' );
+	add_action( 'init', 'styledecor_cpt_mail' );
 
-	add_filter( 'manage_sd-register_posts_columns', 'styledecor_set_register_columns' );
-	add_action( 'manage_sd-register_posts_custom_column', 'styledecor_register_custom_column', 10, 2 );
-	add_filter( 'manage_edit-sd-register_sortable_columns', 'styledecor_set_register_sortable_column' );
-	add_action( 'add_meta_boxes', 'styledecor_register_add_custom_box' );
-	add_action( 'save_post', 'styledecor_register_meta_save' );
+	add_filter( 'manage_sd-mail_posts_columns', 'styledecor_set_mail_columns' );
+	add_action( 'manage_sd-mail_posts_custom_column', 'styledecor_mail_custom_column', 10, 2 );
+	add_action( 'add_meta_boxes', 'styledecor_mail_add_custom_box' );
+	add_action( 'save_post_sd-mail', 'styledecor_mail_meta_save' );
 
 }
 
@@ -290,6 +277,7 @@ function styledecor_cpt_register() {
 		'view'					=> 'View ' . $singular,
 		'view_item'				=> 'View ' . $singular,
 		'search_item'			=> 'Search ' . $plural,
+		'search_items'			=> 'Search ' . $plural,
 		'parent'				=> 'Parent ' . $singular,
 		'not_found'				=> 'No ' . $plural . ' found',
 		'not_found_in_trash' 	=> 'No ' . $plural . ' in Trash'
@@ -311,9 +299,24 @@ function styledecor_cpt_register() {
 		'hierarchical'			=> false,
 		'has_archive'			=> true,
 		'query_var'				=> true,
-		'capability_type'		=> 'post',
-		'map_meta_cap'			=> true,
-		// 'capabilities'		=> array(),
+		'capability_type'		=> 'post', // Change this to a unique name such as 'register' for this post type and uncomment the capabilities for user role access manipulation
+		'map_meta_cap'			=> true, // set to false if you don't want users to edit the post
+		'capabilities'			=> array(
+			'create_posts'	=> 'do_not_allow', // 'false' if you don't want to add the 'Add New' button or'do_not _allow' for multi site feature
+			/* This is for the user role access capabilities. The 'capability_type' should be changed into unique name if this is uncommented.
+
+			// 'publish_posts' => 'publish_registers',
+			// 'edit_posts' => 'edit_registers',
+			// 'edit_others_posts' => 'edit_others_registers',
+			// 'delete_posts' => 'delete_registers',
+			// 'delete_others_posts' => 'delete_others_registers',
+			// 'read_private_posts' => 'read_private_registers',
+			// 'edit_post'	=> 'edit_register',
+			// 'delete_post' => 'delete_register',
+			// 'read_post' => 'read_register',
+
+			*/
+		),
 		'rewrite'				=> array(),
 		'supports'				=> array(
 			'title',
@@ -322,5 +325,21 @@ function styledecor_cpt_register() {
 	);
 
 	register_post_type( 'sd-register', $args );
+
+}
+
+// Add the Register CPT if the registration form is activated
+$register = get_option( 'activate_registration_form' );
+
+if ( @$register == 1 ) {
+
+	add_action( 'init', 'styledecor_cpt_register' );
+
+	add_filter( 'manage_sd-register_posts_columns', 'styledecor_set_register_columns' );
+	add_action( 'manage_sd-register_posts_custom_column', 'styledecor_register_custom_column', 10, 2 );
+	add_filter( 'manage_edit-sd-register_sortable_columns', 'styledecor_set_register_sortable_column' );
+	add_action( 'add_meta_boxes', 'styledecor_register_add_custom_box' );
+	add_action( 'save_post', 'styledecor_register_meta_save' );
+	// add_action( 'admin_init', 'styledecor_cpt_register_remove_subpages' );
 
 }

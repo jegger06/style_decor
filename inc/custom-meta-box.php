@@ -230,7 +230,8 @@ function styledecor_register_add_custom_box() {
 		'Register Custom Fields',
 		'styledecor_register_meta_callback',
 		'sd-register',
-		'normal'
+		'normal',
+		'high'
 	);
 
 }
