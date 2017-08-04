@@ -118,6 +118,7 @@ function styledecor_cpt_design_types() {
 			'pages'			=> true,
 			'feeds'			=> false,
 		),
+		'taxonomies'		=> array( 'type' ),
 		'supports'			=> array(
 			'title',
 			'thumbnail'
