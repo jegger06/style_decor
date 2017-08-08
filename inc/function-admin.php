@@ -16,6 +16,7 @@ function styledecor_add_admin_page() {
 
 	// Adding the sub pages on the 'Style Decor' Menu
 	add_submenu_page( 'style_decor', 'Style Decor General Settings', 'General', 'manage_options', 'style_decor', 'styledecor_theme_create_page' );
+	add_submenu_page( 'style_decor', 'Style Decor Theme Options', 'Theme Options', 'manage_options', 'style_decor_theme_options', 'styledecor_theme_support_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Custom CSS', 'Custom CSS', 'manage_options', 'style_decor_theme_custom_css', 'styledecor_custom_css_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Contact Form', 'Contact Form', 'manage_options', 'style_decor_theme_contact', 'styledecor_contact_form_page' );
 	add_submenu_page( 'style_decor', 'Style Decor Registration Form', 'Registration Form', 'manage_options', 'style_decor_theme_register', 'styledecor_registration_form_page' );
@@ -64,6 +65,54 @@ function styledecor_custom_settings() {
 	register_setting( 'styledecor-register-options', 'activate_registration_form' );
 	add_settings_section( 'styledecor-register-section', 'Registration Form', 'styledecor_register_section', 'style_decor_theme_register' );
 	add_settings_field( 'activate-registration-form', 'Activate Registration Form', 'styledecor_activate_registration_form', 'style_decor_theme_register', 'styledecor-register-section' );
+
+	// Theme Support Options
+	register_setting( 'styledecor-theme-support', 'post_formats' );
+	add_settings_section( 'styledecor-theme-options', 'Theme Options', 'styledecor_theme_options', 'style_decor_theme_options' );
+	add_settings_field( 'post-formats', 'Post Formats', 'styledecor_post_formats', 'style_decor_theme_options', 'styledecor-theme-options' );
+	// Custom Header
+	register_setting( 'styledecor-theme-support', 'custom_header' );
+	add_settings_field( 'custom-header', 'Custom Header', 'styledecor_custom_header', 'style_decor_theme_options', 'styledecor-theme-options' );
+	// Custom Background
+	register_setting( 'styledecor-theme-support', 'custom_background' );
+	add_settings_field( 'custom-background', 'Custom Background', 'styledecor_custom_background', 'style_decor_theme_options', 'styledecor-theme-options' );
+
+
+}
+
+function styledecor_theme_options() {
+
+	echo 'Activate and Deactivate specific Theme Support Options';
+
+}
+
+function styledecor_post_formats() {
+
+	$options = get_option( 'post_formats' );
+	$formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
+	$output = '';
+
+	foreach ( $formats as $format ) {
+		$checked = ( !empty( $options[$format] ) == 1 ? 'checked' : '' );
+		$output .= '<label for="' . $format . '"><input type="checkbox" id="' . $format . '" name="post_formats[' . $format . ']" value="1" ' . $checked . '> ' . $format . '</label><br>';
+	}
+	echo $output;
+
+}
+
+function styledecor_custom_header() {
+
+	$options = get_option( 'custom_header' );
+	$checked = ( !empty( $options ) == 1 ? 'checked' : '' );
+	echo '<label for="custom_header"><input type="checkbox" id="custom_header" name="custom_header" value="1" ' . $checked . ' /> Activate Custom Header</label>';
+
+}
+
+function styledecor_custom_background() {
+
+	$options = get_option( 'custom_background' );
+	$checked = ( !empty( $options ) == 1 ? 'checked' : '' );
+	echo '<label for="custom_background"><input type="checkbox" id="custom_background" name="custom_background" value="1" ' . $checked . ' /> Activate Custom Background</label>';
 
 }
 
@@ -242,6 +291,12 @@ function styledecor_sanitize_custom_css( $input ) {
 function styledecor_theme_create_page() {
 
 	require_once get_template_directory() . '/inc/templates/styledecor-admin.php';
+
+}
+
+function styledecor_theme_support_page() {
+
+	require_once get_template_directory() . '/inc/templates/styledecor-support.php';
 
 }
 
