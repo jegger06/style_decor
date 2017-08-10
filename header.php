@@ -9,8 +9,7 @@
 */
 
 
-?>		
-
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -20,31 +19,34 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Style Decor Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<?php endif; ?>
 	<?php wp_head(); ?>
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<![endif]-->
 </head>
 <body <?php body_class(); ?>>
-	<div class="banner jarallax">
+	<div class="banner jarallax" style="background-image: url(<?php header_image(); ?>);">
 		<div class="agileinfo-dot">
 			<div class="w3ls-banner-info-bottom">
 				<div class="container">
 					<div class="banner-address">
 						<div class="col-md-3 banner-address-left">
-							<p><i class="fa fa-map-marker" aria-hidden="true"></i> St Dolore Place,ingsport 56777.</p>
+							<p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo esc_html( wp_strip_all_tags( get_option( 'location' ) ) ); ?></p>
 						</div>
 						<div class="col-md-3 banner-address-left">
-							<p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:example@email.com">mail@example.com</a></p>
+							<p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:<?php echo esc_attr( get_option( 'email' ) ); ?>"><?php echo esc_attr( get_option( 'email' ) ); ?></a></p>
 						</div>
 						<div class="col-md-3 banner-address-left">
-							<p><i class="fa fa-phone" aria-hidden="true"></i> +1 234 567 8901</p>
+							<p><i class="fa fa-phone" aria-hidden="true"></i> +<?php echo esc_attr( get_option( 'number' ) ); ?></p>
 						</div>
 						<div class="col-md-3 agileinfo-social-grids">
 							<ul>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-rss"></i></a></li>
+								<li><a href="https://facebook.com/<?php echo esc_attr( get_option( 'facebook' ) ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/<?php echo esc_attr( get_option( 'twitter' ) ); ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="<?php bloginfo('rss2_url'); ?>"><i class="fa fa-rss"></i></a></li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
@@ -55,7 +57,7 @@
 				<div class="container">
 					<div class="header-top-grids">
 						<div class="agileits-logo">
-							<h1><a href="index.html">Style Decor</a></h1>
+							<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 						</div>
 						<div class="top-nav">
 							<nav class="navbar navbar-default">
@@ -72,29 +74,15 @@
 								<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 									<nav>
 									<?php
-
 										wp_nav_menu(
 											array(
 												'theme_location' => 'primary',
 												'menu_class' => 'nav navbar-nav',
-												'container' => false
+												'container' => false,
+												'walker' => new Styledecor_Walker_Nav_Primary
 											)
 										);
-
-
 									?>
-										<!-- <ul class="nav navbar-nav">
-											<li class="active"><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="gallery.html">Gallery</a></li>
-											<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Codes<span class="caret"></span></a>
-												<ul class="dropdown-menu">
-													<li><a class="hvr-bounce-to-bottom" href="icons.html">Icons</a></li>
-													<li><a class="hvr-bounce-to-bottom" href="typography.html">Typography</a></li>          
-												</ul>
-											</li>	
-											<li><a href="mail.html">Mail Us</a></li>
-										</ul> -->
 									</nav>
 								</div>
 								<!-- /.navbar-collapse -->
@@ -129,21 +117,22 @@
 								</li>
 							</ul>
 						</div>
-				</section>
+					</section>
+				</div>
+			</div>
 			<!-- flexSlider -->
 				<!-- <script defer src="js/jquery.flexslider.js"></script> -->
 				<script type="text/javascript">
 					$(window).load(function(){
 					  $('.flexslider').flexslider({
 						animation: "slide",
-						start: function(slider){
-						  $('body').removeClass('loading');
-						}
+						// start: function(slider){
+						//   $('body').removeClass('loading');
+						// }
 					  });
 					});
 				</script>
 			<!-- //flexSlider -->
-
 				</div>
 			</div>
 		</div>
