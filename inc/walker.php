@@ -55,9 +55,9 @@ class Styledecor_Walker_Nav_Primary extends Walker_Nav_menu {
 		$item_output .= $args->after;
 		
 		$output .= apply_filters ( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-		
+
 	}
-	
+
 }
 
 ?>

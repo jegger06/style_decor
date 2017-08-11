@@ -45,3 +45,46 @@ $background = get_option( 'custom_background' );
 if ( !empty( $background ) == 1 ) {
 	add_theme_support( 'custom-background' );
 }
+
+// Blog Loop Custom functions
+function styledecor_posted_meta() {
+
+	$posted_on = human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) );
+	$categories = get_the_category();
+	$seperator = ', ';
+	$output = '';
+	$i = 1;
+	if ( !empty( $categories ) ) :
+
+		foreach ( $categories as $category ) {
+
+			if ( $i > 1 ) : $output .= $seperator; endif;
+
+			$output .= '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" title="' . sprintf( 'View all posts in %s', $category->name ) . '">' . esc_html( $category->name ) . '</a>';
+			$i++;
+		}
+
+	endif;
+	return '<span class="posted-on">Posted <a href="' . esc_url( get_permalink() ) . '">' . $posted_on . '</a> ago</span> / <span class="posted-in">' . $output . '</span>';
+
+}
+
+function styledecor_posted_footer() {
+
+	$comments_num = get_comments_number();
+	if ( comments_open() ) {
+		// get comments link
+		if ( $comments_num == 0 ) {
+			$comments = __( 'No Comments' );
+		} elseif ( $comments_num > 1 ) {
+			$comments = $comments_num . __( ' Comments' );
+		} else {
+			$comments = __( '1 Comment' );
+		}
+		$comments = '<a href="' . get_comments_link() . '">' . $comments . ' </a> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>';
+	} else {
+		$comments = __( 'Comments are closed' );
+	}
+
+	return '<div class="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list( '<div class="tags-list"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> ', ' ', '</div>' ) . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div></div></div>';
+}
