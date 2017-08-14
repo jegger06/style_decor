@@ -92,48 +92,53 @@
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<div class="w3layouts-banner">
-				<div class="container">
-					<section class="slider">
-						<div class="flexslider">
-							<ul class="slides">
-								<li>
-									<div class="agileits_w3layouts_banner_info">
-										<h3>simply dummy text of the printing</h3>
-										<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-									</div>
-								</li>
-								<li>
-									<div class="agileits_w3layouts_banner_info">
-										<h3>simply dummy text of the printing</h3>
-										<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-									</div>
-								</li>
-								<li>
-									<div class="agileits_w3layouts_banner_info">
-										<h3>simply dummy text of the printing</h3>
-										<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</section>
-				</div>
-			</div>
-			<!-- flexSlider -->
-				<!-- <script defer src="js/jquery.flexslider.js"></script> -->
-				<script type="text/javascript">
-					$(window).load(function(){
-					  $('.flexslider').flexslider({
-						animation: "slide",
-						// start: function(slider){
-						//   $('body').removeClass('loading');
-						// }
-					  });
-					});
-				</script>
-			<!-- //flexSlider -->
-				</div>
-			</div>
+			<?php if ( is_front_page() ) : ?>
+				<div class="w3layouts-banner">
+					<div class="container">
+						<section class="slider">
+							<div class="flexslider">
+								<?php
+									$args = array(
+										'post_type' => 'post',
+										'tag' => 'slides',
+										'posts_per_page' => 3,
+										'orderby' => 'date',
+										'order' => 'ASC'
+									);
+
+									$slidesQuery = new WP_Query( $args );
+
+									if ( $slidesQuery->have_posts() ) {
+										echo '<ul class="slides">';
+										while ( $slidesQuery->have_posts() ) {
+
+											$slidesQuery->the_post();
+											echo '<li><div class="agileits_w3layouts_banner_info"><h3>' . get_the_title() . '</h3><p>' . get_the_content() . '</p></div></li>';
+											// print_r( $slidesQuery->posts );
+										}
+										echo '</ul>';
+
+										wp_reset_postdata();
+
+									}
+								?>
+							</div>
+						</section>
+					<!-- flexSlider -->
+						<script defer src="js/jquery.flexslider.js"></script>
+						<script type="text/javascript">
+							$(window).load(function(){
+							  $('.flexslider').flexslider({
+								animation: "slide",
+								start: function(slider){
+								  $('body').removeClass('loading');
+								}
+							  });
+							});
+						</script>
+					<!-- //flexSlider -->
+					</div>
+				</div>	
+			<?php endif; ?>
 		</div>
 	</div>

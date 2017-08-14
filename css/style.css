@@ -27,12 +27,12 @@ body{
     backgroun
 }
 .agileinfo-dot {
-    background: url(../images/dott.png)repeat 0px 0px;
+/*    background: url(../images/dott.png)repeat 0px 0px;
     background-size: 3px;
     -webkit-background-size: 3px;
     -moz-background-size: 3px;
     -o-background-size: 3px;
-    -ms-background-size: 3px;
+    -ms-background-size: 3px;*/
     padding: 0em 0;
 	min-height:750px;
 	
@@ -518,9 +518,9 @@ figure.effect-roxy:hover p,.agileinfo_banner_bottom_grid_three_left:hover figcap
     color: #212121;
     width: 100%;
 }
-.w3layouts_register_right input[type="email"]{
+/*.w3layouts_register_right input[type="email"]{
 	margin:1.5em 0;
-}
+}*/
 .w3layouts_register_right input[type="submit"]{
 	outline:none;
 	background:#212121;

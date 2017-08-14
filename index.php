@@ -40,19 +40,3 @@
 	</div>
 
 <?php get_footer(); ?>
-
-<div class="textBlock">
-	<h1>This is the heading</h1>
-	<p>This is the paragraph</p>
-</div>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	
-</body>
-</html>
