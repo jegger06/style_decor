@@ -125,7 +125,6 @@
 							</div>
 						</section>
 					<!-- flexSlider -->
-						<script defer src="js/jquery.flexslider.js"></script>
 						<script type="text/javascript">
 							$(window).load(function(){
 							  $('.flexslider').flexslider({

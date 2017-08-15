@@ -115,5 +115,81 @@
 		</div>
 	</div><!-- .jarallax .register -->
 
+	<div class="banner-bottom-1">
+		<div class="container">
+			<?php
+
+				$args = array(
+					'post_type' => 'page',
+					'page_id' => 444,
+					'posts_per_page' => 1
+				);
+
+				$interiorQuery = new WP_Query( $args );
+
+				if ( $interiorQuery->have_posts() ) {
+				
+					while ( $interiorQuery->have_posts() ) {
+						$interiorQuery->the_post();
+						the_content();
+					}
+					wp_reset_postdata();
+
+				}
+
+			?>
+		</div><!-- .container -->
+	</div><!-- .banner-bottom-1 -->
+
+	<div class="events">
+		<div class="container">
+			<?php
+
+				$args = array(
+					'post_type' => 'page',
+					'page_id' => 439,
+					'posts_per_page' => 1
+				);
+
+				$interiorQuery = new WP_Query( $args );
+
+				if ( $interiorQuery->have_posts() ) {
+				
+					while ( $interiorQuery->have_posts() ) {
+						$interiorQuery->the_post();
+						the_content();
+					}
+					wp_reset_postdata();
+
+				}
+
+				$args = array(
+					'post_type' => 'sd-news-events',
+					'post_status' => 'publish',
+					'posts_per_page' => 3,
+				);
+
+				$newseventsQuery = new WP_Query( $args );
+
+				if ( $newseventsQuery->have_posts() ) {
+					echo '<div class="events-grids">';
+
+					while ( $newseventsQuery->have_posts() ) {
+						$newseventsQuery->the_post();
+						$date = get_the_date( 'j F Y' );
+						$title = get_the_title();
+						$excerpt = get_the_excerpt();
+						$permalink = get_the_permalink();
+
+						echo '<div class="col-md-4 events-grid1"><div class="events-grid11"><div class="events-grid11-info"><h4><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i><label>' . $date . '</label><a href="' . $permalink . '" title="' . $title . '">' . $title . '</a></h4><p>' . $excerpt . '</p></div></div></div>';
+					}
+					wp_reset_postdata();
+					echo '</div>';
+				}
+
+			?>
+		</div><!-- .container -->
+	</div><!-- .events -->
+
 
 <?php get_footer(); ?>

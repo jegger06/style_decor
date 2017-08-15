@@ -53,6 +53,8 @@ function styledecor_load_scripts() {
 	wp_enqueue_script( 'jarallax', get_template_directory_uri() . '/js/jarallax.js', array('jquery'), '1.1.0', true );
 	wp_enqueue_script( 'smoothscroll', get_template_directory_uri() . '/js/SmoothScroll.min.js', array('jquery'), '0.0.1', true );
 
+	wp_register_script( 'register', get_template_directory_uri() . '/js/register.js', array('jquery'), '0.0.1', true );
+
 }
 
 add_action( 'wp_enqueue_scripts', 'styledecor_load_scripts' );
