@@ -88,3 +88,15 @@ function styledecor_posted_footer() {
 
 	return '<div class="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list( '<div class="tags-list"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> ', ' ', '</div>' ) . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div></div></div>';
 }
+
+function styledecor_custom_css() {
+
+	$custom_css = get_option( 'custom_css' );
+
+	if ( !empty( $custom_css ) ) {
+		echo "<style type=\"text/css\">\r\n" . trim( str_replace( ' ', '', preg_replace( '/\s\s+/', ' ', $custom_css ) ) ) . "\r\n</style>";
+	}
+
+}
+
+add_action( 'wp_head', 'styledecor_custom_css' );

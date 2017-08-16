@@ -30,3 +30,14 @@ function styledecor_custom_excerpt( $field, $max_lenght = 20 ) {
 	return  $excerpt;
 
 }
+
+function mailtrap($phpmailer) {
+  $phpmailer->isSMTP();
+  $phpmailer->Host = 'smtp.mailtrap.io';
+  $phpmailer->SMTPAuth = true;
+  $phpmailer->Port = 2525;
+  $phpmailer->Username = 'af6fb58d830240';
+  $phpmailer->Password = '4792e5fb28b10b';
+}
+
+add_action('phpmailer_init', 'mailtrap');

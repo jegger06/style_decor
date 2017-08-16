@@ -19,6 +19,7 @@ function styledecor_registration_form( $atts, $content = null ) {
 	);
 
 	ob_start();
+	wp_enqueue_style( 'registerStyle' );
 	wp_enqueue_script( 'register' );
 
 	include 'templates/registration-form.php';

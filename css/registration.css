@@ -1,0 +1,11 @@
+.form-control-msg {
+	display: none;
+}
+
+.has-error .form-control-msg {
+	display: block;
+}
+
+.js-register-status {
+	display: block;
+}

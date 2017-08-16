@@ -17,7 +17,7 @@ function styledecor_save_registration() {
 	$email = wp_strip_all_tags( $_POST['email'] );
 	$phone = wp_strip_all_tags( $_POST['phone'] );
 
-	$title = $first_name . ' ' . $last_name;
+	$title = ucwords( $first_name ) . ' ' . ucwords( $last_name );
 
 	$postarr = array(
 		'post_type' => 'sd-register',
@@ -25,8 +25,8 @@ function styledecor_save_registration() {
 		'post_status' => 'publish',
 		'post_author' => 1,
 		'meta_input' => array(
-			'register_first_name' => $first_name,
-			'register_last_name' => $last_name,
+			'register_first_name' => ucwords( $first_name ),
+			'register_last_name' => ucwords( $last_name ),
 			'register_email' => $email,
 			'register_phone' => $phone
 		)
@@ -34,7 +34,22 @@ function styledecor_save_registration() {
 
 	$postID = wp_insert_post( $postarr );
 
-	echo $postID;
+	if ( $postID !== 0 ) {
+
+		$to = get_bloginfo( 'admin_email' );
+		$subject = 'Style Decor Registration Form - ' . $title;
+
+		$headers[] = 'From: ' . get_bloginfo( 'name' ) . ' <' . $to . '>';
+		$headers[] = 'Reply-To: ' . $title . ' <' . $email . '>';
+		$headers[] = 'Content-Type: text/html: charset=UTF-8';
+
+		wp_mail( $to, $subject, $message, $headers );
+
+		echo $postID;
+
+	} else {
+		echo 0;
+	}
 
 	die();
 

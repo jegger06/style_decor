@@ -25,7 +25,7 @@
 
 						while ( have_posts() ) : the_post();
 
-							get_template_part( 'template-parts/content' . get_post_format() );
+							get_template_part( 'template-parts/content', get_post_format() );
 
 						endwhile;
 
@@ -37,6 +37,6 @@
 
 		</main>
 
-	</div>
+	</div><!-- #primary .content-area -->
 
 <?php get_footer(); ?>

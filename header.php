@@ -28,8 +28,12 @@
 	<![endif]-->
 </head>
 <body <?php body_class(); ?>>
-	<div class="banner jarallax" style="background-image: url(<?php header_image(); ?>);">
-		<div class="agileinfo-dot">
+	<?php
+		$bannerClass = ( is_front_page() || is_home() ) ? 'banner' : 'banner-1';
+		$agileinfoClass = ( is_front_page() ) ? 'agileinfo-dot' : 'agileinfo-dot-1';
+	?>
+	<div class="<?php echo $bannerClass; ?> jarallax" style="background-image: url(<?php header_image(); ?>);">
+		<div class="<?php echo $agileinfoClass; ?>">
 			<div class="w3ls-banner-info-bottom">
 				<div class="container">
 					<div class="banner-address">
@@ -92,7 +96,7 @@
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<?php if ( is_front_page() ) : ?>
+			<?php if ( is_front_page() || is_home() ) : ?>
 				<div class="w3layouts-banner">
 					<div class="container">
 						<section class="slider">
@@ -137,7 +141,7 @@
 						</script>
 					<!-- //flexSlider -->
 					</div>
-				</div>	
+				</div>
 			<?php endif; ?>
 		</div>
 	</div>
