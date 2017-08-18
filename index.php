@@ -21,9 +21,16 @@
 
 				<?php
 
-					if ( have_posts() ) :
+					$args = array(
+						'post_type' => 'post',
+						'tag__not_in' => array( 10 ),
+					);
 
-						while ( have_posts() ) : the_post();
+					$postsQuery = new WP_Query( $args );
+
+					if ( $postsQuery->have_posts() ) :
+
+						while ( $postsQuery->have_posts() ) : $postsQuery->the_post();
 
 							get_template_part( 'template-parts/content', get_post_format() );
 

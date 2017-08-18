@@ -5,15 +5,20 @@
 @package styledecortheme
 
 ===========================
-	Standard Post Format
+	Video Post Format
 ===========================
 
 */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'styledecor-format-video' ); ?>>
 
 	<header class="entry-header text-center">
+
+		<div class="embed-responsive embed-responsive-16by9">
+			<?php echo styledecor_get_embedded_media( array( 'video', 'iframe' ) ); ?>
+		</div>
+
 		<?php echo styldecor_custom_title(); ?>
 
 		<div class="entry-meta text-center">
@@ -23,13 +28,6 @@
 	</header>
 
 	<div class="entry-content">
-
-		<?php if ( styledecor_get_attachment() ) : ?>
-			<a class="standard-featured-link" href="<?php the_permalink(); ?>">
-				<div class="standard-featured background-image" style="background-image: url(<?php echo styledecor_get_attachment(); ?>);"></div>
-			</a>
-
-		<?php endif; ?>
 
 		<div class="entry-excerpt">
 			<?php the_excerpt(); ?>

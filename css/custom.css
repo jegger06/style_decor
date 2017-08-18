@@ -1,0 +1,229 @@
+article {
+	margin-bottom: 80px;
+}
+
+.entry-header h1 a {
+	color: #212121;
+	-webkit-transition: all 320ms ease;
+	transition: all 320ms ease;
+}
+
+.entry-header h1 a:hover,
+.entry-header h1 a:focus {
+	text-decoration: none;
+}
+
+.entry-meta {
+	color: #898989;
+	font-size: 15px;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+.entry-meta a {
+	font-weight: 600;
+}
+
+.entry-meta .posted-in a {
+	text-transform: capitalize;	
+}
+
+.background-image {
+	background-position: center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.standard-featured-link {
+	display: block;
+	position: relative;
+}
+
+.standard-featured-link:hover .standard-featured:after,
+.standard-featured-link:focus .standard-featured:after {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.standard-featured {
+	display: block;
+	height: 330px;
+	position: relative;
+}
+
+.standard-featured:after {
+	-webkit-transition: background-color 320ms ease;
+	transition: background-color 320ms ease;
+	content: '';
+	position: absolute;
+	display: block;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.35);
+}
+
+.entry-excerpt {
+	margin: 30px 0 16px;
+}
+
+.entry-excerpt p {
+	color: #999;
+	line-height: 1.8em;
+	margin: 0;
+}
+
+.button-container {
+	margin-bottom: 30px;
+}
+
+.btn-styledecor {
+	border-radius: 0;
+	color: #fff;
+	font-size: 1.5em;
+	border: none;
+	background: #0cdbff;
+	text-transform: uppercase;
+}
+
+.btn-styledecor:hover {
+	color: #fff;
+	background: #0accff;
+}
+
+.entry-footer {
+	padding: 10px 5px;
+	border-bottom: 2px solid #dadada;
+	text-transform: uppercase;
+}
+
+.entry-footer a {
+	display: inline-block;
+	font-size: 14px;
+}
+
+.entry-footer .tags-list span {
+	margin-right: 10px;
+}
+
+.entry-footer .tags-list a {
+	padding: 0 4px;
+}
+
+.entry-footer .comments-link {
+	margin-right: 10px;
+}
+
+/*Image Post Format*/
+.styledecor-format-image .entry-header {
+	height: 550px;
+	color: #fff;
+	position: relative;
+}
+
+.styledecor-format-image h1 {
+	padding-top: 20px;
+}
+
+.entry-excerpt.image-caption {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+}
+
+.entry-excerpt.image-caption p {
+	color: #fff;
+	margin: 40px 0;
+}
+
+.entry-excerpt.image-caption {
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 );
+}
+
+/*Audio Post Format*/
+.styledecor-format-audio h1 {
+	font-size: 1.8em;
+}
+
+.styledecor-format-audio h1.agileinfo_header {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.styledecor-format-audio h1.agileinfo_header:before,
+.styledecor-format-audio h1.agileinfo_header:after {
+	display: none;
+}
+
+.styledecor-format-audio .entry-meta {
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.styledecor-format-audio .entry-content iframe {
+	width: 100%;
+	height: 166px;
+}
+
+/*Video Post Format*/
+.styledecor-format-video header {
+	margin-top: 40px;
+}
+
+.styledecor-format-video header h1.entry-title {
+	margin-top: 20px;
+}
+
+/*Quote Post Format*/
+.styledecor-format-quote .quote-content {
+	font-weight: 100;
+	letter-spacing: 0.03em;
+	line-height: 1.3em;
+}
+
+.styledecor-format-quote .quote-content:before,
+.styledecor-format-quote .quote-content:after {
+	display: inline-block;
+	position: relative;
+}
+.styledecor-format-quote .quote-content:before {
+	content: '“';
+}
+
+.styledecor-format-quote .quote-content:after {
+	content: '”';
+}
+
+.styledecor-format-quote .quote-author {
+	font-size: 16px;
+	letter-spacing: 0.06em;
+	text-transform: capitalize;
+}
+
+/*Link Post Format*/
+.styledecor-format-link h1 {
+	font-weight: 100;
+}
+
+.styledecor-format-link h1 a {
+	display: block;
+}
+
+.styledecor-format-link h1 .link-icon {
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 50%;
+	color: #fff;
+	display: block;
+	font-size: 30px;
+	height: 50px;
+	line-height: 1em;
+	margin: 10px auto 0;
+	padding-top: 10px;
+	width: 50px;
+}
