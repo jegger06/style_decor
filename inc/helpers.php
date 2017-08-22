@@ -30,10 +30,22 @@ function styledecor_custom_excerpt( $field, $max_lenght = 20 ) {
 
 }
 
-function styldecor_custom_title() {
+function styldecor_custom_title( $link = true ) {
 
 	$rawTitle = get_the_title();
 	$rawTitle = explode(' ', $rawTitle);
+
+	if ( $link == true ) {
+
+		$before = '<h1 class="agileinfo_header"><a href="' . esc_url( get_permalink() ) . '">';
+		$after = '</a></h1>';
+
+	} else {
+
+		$before = '<h1 class="agileinfo_header">';
+		$after = '</h1>';
+
+	}
 
 	if ( count( $rawTitle ) > 1  ) {
 
@@ -48,7 +60,7 @@ function styldecor_custom_title() {
 			}
 		}
 
-		$title = '<h1 class="agileinfo_header"><a href="' . esc_url( get_permalink() ) . '">' . $title . $titleSpan . '</a></h1>';
+		$title = $before . $title . $titleSpan . $after;
 
 	} else {
 
@@ -56,7 +68,7 @@ function styldecor_custom_title() {
 		$splittedTitle = str_split( $rawTitle );
 		$countTitle = ceil( count( $splittedTitle ) / 2 );
 		$splittedIntoTwo = str_split( $rawTitle, $countTitle );
-		$title = '<h1 class="agileinfo_header"><a href="' . esc_url( get_permalink() ) . '">' . $splittedIntoTwo[0] . '<span>' . $splittedIntoTwo[1] . '</span></a></h1>';
+		$title = $before . $splittedIntoTwo[0] . '<span>' . $splittedIntoTwo[1] . '</span>' . $after;
 
 	}
 
@@ -117,6 +129,23 @@ function styledecor_get_url() {
 	}
 
 	return esc_url_raw( $links[1] );
+
+}
+
+// Single Post Custom Functions
+function styledecor_post_navigation() {
+
+	$nav = '<div class="row">';
+
+	$prev = get_previous_post_link( '<div class="post-link-nav"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> %link</div>', '%title', false, array( 10 ) );
+	$nav .= '<div class="col-xs-12 col-sm-6">' . $prev . '</div>';
+
+	$next = get_next_post_link( '<div class="post-link-nav">%link <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>', '%title', false, array( 10 ) );
+	$nav .= '<div class="col-xs-12 col-sm-6 text-right">' . $next . '</div>';
+
+	$nav .= '</div>';
+
+	return $nav;
 
 }
 
