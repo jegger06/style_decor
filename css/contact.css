@@ -1,0 +1,18 @@
+.form-control-msg {
+	display: none;
+	position: absolute;
+	width: 100%;
+	bottom: -25px;
+}
+
+.has-error .form-control-msg {
+	display: block;
+}
+
+.js-register-status {
+	display: block;
+}
+
+.submit .form-control-msg {
+	position: relative;
+}

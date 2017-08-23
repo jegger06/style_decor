@@ -52,6 +52,7 @@ function styldecor_custom_title( $link = true ) {
 		$totalVal = count( $rawTitle );
 		$counter = 0;
 		$titleSpan = '<span>' . end( $rawTitle ) . '</span>';
+		$title = '';
 
 		foreach ( $rawTitle as $val ) {
 			$counter++;
@@ -146,6 +147,16 @@ function styledecor_post_navigation() {
 	$nav .= '</div>';
 
 	return $nav;
+
+}
+
+function styledecor_get_post_navigation() {
+
+	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ):
+
+		require( get_template_directory() . '/inc/templates/styledecor-comment-nav.php' );
+
+	endif;
 
 }
 

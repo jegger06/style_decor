@@ -57,6 +57,9 @@ function styledecor_load_scripts() {
 	wp_register_style( 'registerStyle', get_template_directory_uri() . '/css/registration.css', array(), '0.0.1', 'all' );
 	wp_register_script( 'register', get_template_directory_uri() . '/js/register.js', array('jquery'), '0.0.1', true );
 
+	wp_register_style( 'contactStyle', get_template_directory_uri() . '/css/contact.css', array(), '0.0.1', 'all' );
+	wp_register_script( 'contact', get_template_directory_uri() . '/js/contact.js', array( 'jquery' ), '0.0.1', true );
+
 }
 
 add_action( 'wp_enqueue_scripts', 'styledecor_load_scripts' );

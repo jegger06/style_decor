@@ -131,3 +131,6 @@ function styledecor_share_this( $content ) {
 }
 
 add_filter( 'the_content', 'styledecor_share_this' );
+
+// Activate HTML5 Features
+add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );

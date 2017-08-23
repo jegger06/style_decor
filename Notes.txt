@@ -25,6 +25,5 @@
 	- Google Map (Mail Us Page)
 
 
-Services
-Register
-Choose Us
+For Production - Change the files:
+wp-config.php - define('WP_DEBUG', true);

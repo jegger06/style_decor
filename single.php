@@ -35,7 +35,7 @@
 
 									if ( comments_open() ) :
 
-										comments_template();								
+										comments_template();
 
 									endif;
 
