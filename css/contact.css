@@ -16,3 +16,8 @@
 .submit .form-control-msg {
 	position: relative;
 }
+
+.styled-input input:disabled ~ label,
+.styled-input textarea:disabled ~ label {
+	top: -1.3em;
+}

@@ -54,6 +54,7 @@ function styledecor_posted_meta() {
 	$seperator = ', ';
 	$output = '';
 	$i = 1;
+	$cat_separator = ( !empty( $categories ) ) ? '/' : '';
 	if ( !empty( $categories ) ) :
 
 		foreach ( $categories as $category ) {
@@ -65,7 +66,7 @@ function styledecor_posted_meta() {
 		}
 
 	endif;
-	return '<span class="posted-on">Posted <a href="' . esc_url( get_permalink() ) . '">' . $posted_on . '</a> ago</span> / <span class="posted-in">' . $output . '</span>';
+	return '<span class="posted-on">Posted <a href="' . esc_url( get_permalink() ) . '">' . $posted_on . '</a> ago</span> ' . $cat_separator . ' <span class="posted-in">' . $output . '</span>';
 
 }
 
@@ -134,3 +135,21 @@ add_filter( 'the_content', 'styledecor_share_this' );
 
 // Activate HTML5 Features
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+
+function styledecor_footer_widget() {
+
+	register_sidebar(
+		array(
+			'name' => esc_html__( 'Styledecor Footer', 'styledecortheme' ),
+			'id' => 'styledecor-footer',
+			'description' => 'Dynamic Footer',
+			'before_widget' => '<section id="%1$s" class="styledecor-widget %2$s">',
+			'after_widget' => '</section>',
+			'before_title' => '<h3>',
+			'after_title' => '</h3>'
+		)
+	);
+
+}
+
+add_action( 'widgets_init', 'styledecor_footer_widget' );

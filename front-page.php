@@ -81,7 +81,6 @@
 					wp_reset_postdata();
 				}
 
-
 			?>
 			</div><!-- .agileits_banner_bottom_grid_three -->
 

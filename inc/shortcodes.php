@@ -27,8 +27,11 @@ function styledecor_registration_form( $atts, $content = null ) {
 	return ob_get_clean();
 
 }
-
-add_shortcode( 'registration_form', 'styledecor_registration_form' );
+// Activate registration form if checked
+$registration_form = get_option( 'activate_registration_form' );
+if ( !empty( $registration_form ) == 1 ) {
+	add_shortcode( 'registration_form', 'styledecor_registration_form' );
+}
 
 function styledecor_contact_form( $atts, $content = null ) {
 

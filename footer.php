@@ -14,12 +14,10 @@
 		<div class="agile_footer_copy">
 			<div class="w3agile_footer_grids">
 				<div class="col-md-4 w3agile_footer_grid">
-					<h3>About Us</h3>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse.<span>Excepteur sint occaecat cupidatat 
-						non proident, sunt in culpa qui officia deserunt mollit.</span></p>
+					<?php dynamic_sidebar( 'styledecor-footer' ); ?>
 				</div>
 				<div class="col-md-4 w3agile_footer_grid">
-					<h3>Contact Info</h3>
+					<h3><?php echo esc_attr( 'Contact Info' ); ?></h3>
 					<ul>
 						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i><?php echo get_option( 'location' ); ?></li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:<?php echo esc_attr( get_option( 'email' ) ); ?>"><?php echo esc_attr( get_option( 'email' ) ); ?></a></li>

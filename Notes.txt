@@ -27,3 +27,4 @@
 
 For Production - Change the files:
 wp-config.php - define('WP_DEBUG', true);
+remove the mailtrap function on helpers.php

@@ -30,9 +30,14 @@ function styledecor_custom_excerpt( $field, $max_lenght = 20 ) {
 
 }
 
-function styldecor_custom_title( $link = true ) {
+function styldecor_custom_title( $link = true, $text = '' ) {
 
-	$rawTitle = get_the_title();
+	if ( empty( $text ) ) {
+		$rawTitle = get_the_title();		
+	} else {
+		$rawTitle = $text;
+	}
+
 	$rawTitle = explode(' ', $rawTitle);
 
 	if ( $link == true ) {

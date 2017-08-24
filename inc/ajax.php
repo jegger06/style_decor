@@ -38,6 +38,11 @@ function styledecor_save_registration() {
 
 		$to = get_bloginfo( 'admin_email' );
 		$subject = 'Style Decor Registration Form - ' . $title;
+		$message = 'Someone Registered into your site. Details are below: <br>';
+		$message .= 'Name: <strong>' . $title . '</strong><br>';
+		$message .= 'Email: <strong><a href="mailto:' . $email . '">' . $email . '</a></strong><br>';
+		$message .= 'Mobile Number: <strong>' . $phone . '</strong>';
+
 
 		$headers[] = 'From: ' . get_bloginfo( 'name' ) . ' <' . $to . '>';
 		$headers[] = 'Reply-To: ' . $title . ' <' . $email . '>';
@@ -64,7 +69,7 @@ function styledecor_save_contact() {
 	$phone = wp_strip_all_tags( $_POST['phone'] );
 	$email = wp_strip_all_tags( $_POST['email'] );
 	$subject = wp_strip_all_tags( $_POST['subject'] );
-	$message = wp_strip_all_tags( $_POST['message'] );
+	$message = $_POST['message'];
 
 	$title = ucwords( $fullname );
 
@@ -86,7 +91,7 @@ function styledecor_save_contact() {
 	if ( $postID !== 0 ) {
 
 		$to = get_bloginfo( 'admin_email' );
-		$subject = 'Style Decor Contact Form - ' . $title;
+		$subject = 'Style Decor Contact Form - ' . ucwords( $subject );
 
 		$headers[] = 'From: ' . get_bloginfo( 'name' ) . ' <' . $to . '>';
 		$headers[] = 'Reply-To: ' . $title . ' <' . $email . '>';

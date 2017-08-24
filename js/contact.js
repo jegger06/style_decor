@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
 			ajaxurl = contact_form.data('url');
 
 			$('.has-error').removeClass('has-error');
+			$('.js-register-status').removeClass('js-register-status');
 
 			if ( fullname === '' ) {
 				$('#fullname').parent('.styled-input').addClass('has-error');
@@ -54,27 +55,20 @@ jQuery(document).ready(function($) {
 				},
 				success: function( response ) {
 					if ( response == 0 ) {
-
-						// setTimeout(function() {
 							$('.js-register-submission').removeClass('js-register-status');
 							$('.js-register-error').addClass('js-register-status');
 							contact_form.find('input, textarea').removeAttr('disabled');
-						// }, 1000);
-
 					} else {
-
-						// setTimeout(function() {
 							$('.js-register-submission').removeClass('js-register-status');
 							$('.js-register-success').addClass('js-register-status');
-							contact_form.find('input[type!="submit"], textarea').removeAttr('disabled').val('');
-						// }, 1000);
-
+							contact_form.find('input, textarea').removeAttr('disabled');
+							contact_form.find('input[type!="submit"], textarea').val('');
 					}
 				},
 				error: function( response ) {
 					console.log(response);
 				}
-			})
+			});
 
 	});
 

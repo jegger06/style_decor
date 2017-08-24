@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
 					setTimeout(function() {
 						$('.js-register-submission').removeClass('js-register-status');
 						$('.js-register-error').addClass('js-register-status');
-						registratrion_form.find('input, button').removeAttr('disabled');
+						registratrion_form.find('input').removeAttr('disabled');
 					}, 1000);
 
 				} else {
@@ -60,7 +60,8 @@ jQuery(document).ready(function($) {
 					setTimeout(function() {
 						$('.js-register-submission').removeClass('js-register-status');
 						$('.js-register-success').addClass('js-register-status');
-						registratrion_form.find('input[type!="submit"], button').removeAttr('disabled').val('');
+						registratrion_form.find('input').removeAttr('disabled');
+						registratrion_form.find('input[type!="submit"]').val('');
 					}, 1000);
 
 				}
@@ -68,7 +69,7 @@ jQuery(document).ready(function($) {
 			error: function( response ) {
 				$('.js-register-submission').removeClass('js-register-status');
 				$('.js-register-error').addClass('js-register-status');
-				registratrion_form.find('input, button').removeAttr('disabled');
+				registratrion_form.find('input').removeAttr('disabled');
 			}
 		});
 

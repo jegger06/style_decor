@@ -3,6 +3,11 @@ a img.aligncenter {
 	height: auto;
 }
 
+img.aligncenter {
+	width: 100%;
+	height: auto;
+}
+
 .page-title {
 	margin-bottom: 20px;
 }
@@ -414,8 +419,9 @@ a.comment-reply-link {
 	margin-bottom: 50px;
 }
 
-
-
+.team h1 {
+	color: #fff;
+}
 
 @media screen and (max-width: 767px) {
 	.styledecor-format-aside .aside-featured {
